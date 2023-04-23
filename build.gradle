@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'dev.bedcrab'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Minestom:Minestom:a9e319f961'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "dev.bedcrab.BlockyTDServer",
+                "Multi-Release": true
+    }
+}
