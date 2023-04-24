@@ -1,6 +1,7 @@
 package dev.bedcrab.server;
 
 import dev.bedcrab.commands.ServerCommands;
+import dev.bedcrab.events.ServerEvents;
 import net.minestom.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class MinestomServer {
      * Server startup logic
      */
     private void onStartup() {
-        logger.info("Done (MinestomServer)! For help, type \"help\" or \"?\"");
+        logger.info("Done (yeepee)! For help, type \"help\" or \"?\"");
     }
 
     /**
@@ -51,6 +52,7 @@ public class MinestomServer {
         int port = Integer.parseInt((String) configuration.get("server-port"));
 
         ServerCommands.enable(MinecraftServer.getCommandManager());
+        ServerEvents.enable(MinecraftServer.getGlobalEventHandler());
 
         logger.info("Starting server on " + ip + ":" + port);
         server.start(ip, port);
