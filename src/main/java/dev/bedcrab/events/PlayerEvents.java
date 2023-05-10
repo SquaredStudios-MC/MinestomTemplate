@@ -7,7 +7,10 @@ public class PlayerEvents {
      * Called when a player joins
      */
     public void onJoin(PlayerLoginEvent event) {
-        // event.setSpawningInstance(...);
-        // event.getPlayer().setRespawnPoint(new Pos(0.5, 64, 0.5));
+
+        InstanceContainer instance = MinestomServer.instanceContainer;
+        instance.setChunkLoader(new AnvilLoader(PlayerEvents.class.getClassLoader().getResource((String) MinestomServer.configuration.get("worlds-directory") + "/world").getPath()));
+
+        event.setSpawningInstance(instance);
     }
 }
