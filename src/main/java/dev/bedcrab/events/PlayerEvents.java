@@ -8,7 +8,7 @@ public class PlayerEvents {
      */
     public void onJoin(PlayerLoginEvent event) {
 
-        InstanceContainer instance = MinestomServer.instanceContainer;
+        InstanceContainer instance = MinestomServer.getInstance().instanceContainer;
         instance.setChunkLoader(new AnvilLoader(PlayerEvents.class.getClassLoader().getResource((String) MinestomServer.configuration.get("worlds-directory") + "/world").getPath()));
 
         event.setSpawningInstance(instance);
