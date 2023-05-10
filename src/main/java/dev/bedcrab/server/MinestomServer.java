@@ -12,11 +12,15 @@ public class MinestomServer {
     private static MinestomServer instance = null;
     private static final Logger logger = LoggerFactory.getLogger(MinestomServer.class);
     public static final Properties configuration = new Properties();
+    public InstanceContainer instanceContainer;
 
     /**
      * Pre-startup tasks: executed before the server starts. Throw {@link RuntimeException}s if necessary.
      */
     private void preStartup() throws RuntimeException {
+        // Enable skins and Optifine support
+        MojangAuth.init();
+        OptifineSupport.enable();
         // add database code here or something
     }
 
@@ -24,7 +28,14 @@ public class MinestomServer {
      * Server startup logic
      */
     private void onStartup() {
+
+        // Set instanceContainer to be an empty instance
+        InstanceManager manager = MinecraftServer.getInstanceManager();
+        instanceContainer = manager.createInstanceContainer();
+
+        // (For hosts) Send the bukkit server start message
         logger.info("Done (yeepee)! For help, type \"help\" or \"?\"");
+
     }
 
     /**
